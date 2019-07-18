@@ -19,7 +19,7 @@ messageTwo.textContent = ''
 
 weatherForm.addEventListener('submit', (e) => { // e stands for event
     e.preventDefault()
-    const location = 'http://localhost:3000/weather?address=' + search.value
+    const location = '/weather?address=' + search.value
     messageOne.textContent = 'Loading...'
     messageTwo.textContent = ''
     fetch(location).then((response) => {
