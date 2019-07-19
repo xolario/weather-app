@@ -31,7 +31,25 @@ weatherForm.addEventListener('submit', (e) => { // e stands for event
         } else {
             console.log(data)
             messageOne.textContent = data.place
-            messageTwo.textContent = data.forecastData
+            messageTwo.textContent = data.forecastData.summary
+            var sm = new Date(data.forecastData.data[0].x * 1000)
+            console.log(sm.toString())
+            console.log(data.forecastData.data)
+            var ctx = document.getElementById('myChart');
+            const labels = data.forecastData.data.map((t) => t.label)
+            console.log(labels)
+            var myLineChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels,
+                    datasets: [{
+                        backgroundColor: 'rgba(232, 213, 213, 0.5)',
+                        data: data.forecastData.data,
+                        label: 'Temperature by hours'
+                    }]
+                },
+                options: {}
+            });
         }
     })
 })

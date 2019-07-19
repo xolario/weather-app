@@ -19,7 +19,15 @@ const forecast = (longitude, latitude, callback) => {
         } else if(body.error) {
             callback('Unable to find location', undefined)
         } else {
-            callback(undefined, body.daily.data[0].summary + ' Current temperature is ' + body.currently.temperature + '. There is a ' + body.currently.precipProbability + ' chance of rain.')
+            const summary = body.daily.data[0].summary + ' Current temperature is ' + body.currently.temperature + '. There is a ' + body.currently.precipProbability + ' chance of rain.'
+            const data = body.hourly.data.map((t) => {
+                return {
+                    label: new Date(t.time * 1000).getHours(),
+                    x: new Date(t.time * 1000),
+                    y: t.temperature
+                }
+            })
+            callback(undefined, {summary, data})
         }
     })
 }
