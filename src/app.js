@@ -71,7 +71,7 @@ app.get('/products', (req, res) => {
 
 app.get('/about', (req, res) => {
     res.render('about', {
-        title: 'about page',
+        title: 'About page',
         name: '@alieno'
     })
 })
@@ -94,7 +94,7 @@ app.get('/help/*', (req, res) => {
 
 app.get('*', (req, res) => {
     res.render('404', {
-        title: 'Ooops :(',
+        title: 'Oops :(',
         errorMessage: 'This page doesn\'t exists.',
         name: '@alieno'
     })
